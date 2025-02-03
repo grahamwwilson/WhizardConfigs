@@ -19,7 +19,8 @@ alias neutrino = n1:N1:n2:N2
 
 ?write_raw=false
 sample_format = lhef
-?vis_diags = true
+# Diagram visualization currently doesn't work on HPC cluster...
+#?vis_diags = true
 
 ?slha_read_decays = true
 read_slha("SC-130-115-110-100-90.slha")
