@@ -1,0 +1,228 @@
+model = MSSM_CKM
+
+mW = 80.369
+#mH = 125.2
+
+alias parton = u:U:d:D:s:S:c:C:g
+
+# Need to set s,c quark masses to zero for this to work.
+ms=0
+mc=0
+
+alias jet = parton
+### We could have added strange and charm jets:
+# alias jet = parton:s:S:c:C
+alias lepton = e2:E2
+alias myelectrons = e1:E1
+alias mymuons = e2:E2
+alias neutrino = n1:N1:n2:N2
+
+?write_raw=false
+sample_format = lhef
+?vis_diags = true
+
+?slha_read_decays = true
+read_slha("Slepton-Cascade-260-240-220.slha")
+
+# All production processes
+# charged slepton(L) pairs
+process Sleptons1 = parton, parton => se1, SE1
+process Sleptons2 = parton, parton => smu1, SMU1
+# sneutrino pairs
+process Sleptons3 = parton, parton => sve, "sve~"
+process Sleptons4 = parton, parton => svm, "svm~"
+# slepton(L) sneutrino associated production
+process Sleptons5 = parton, parton => sve, SE1
+process Sleptons6 = parton, parton => svm, SMU1
+process Sleptons7 = parton, parton => "sve~", se1
+process Sleptons8 = parton, parton => "svm~", smu1
+
+# How to specify different ones? 
+# Redefine the decay integrals (see later)
+
+process sel_dec0  = se1  => e1, neu1
+process smu_dec0  = smu1 => e2, neu1
+process selb_dec0  = SE1  => E1, neu1
+process smub_dec0  = SMU1 => E2, neu1
+
+process sel_dec1  = se1  => n1, "ch1-"
+process smu_dec1  = smu1 => n2, "ch1-"
+process selb_dec1 = SE1  => N1, "ch1+"
+process smub_dec1 = SMU1 => N2, "ch1+"
+
+process sel_dec2  = se1  => e1, neu2
+process smu_dec2  = smu1 => e2, neu2
+process selb_dec2  = SE1  => E1, neu2
+process smub_dec2  = SMU1 => E2, neu2
+
+process sve_dec0  = sve => n1, neu1
+process svm_dec0  = svm => n2, neu1
+process sveb_dec0 = "sve~" => N1, neu1
+process svmb_dec0 = "svm~" => N2, neu1
+
+process sve_dec1  = sve => e1, "ch1+"
+process svm_dec1  = svm => e2, "ch1+"
+process sveb_dec1 = "sve~" => E1, "ch1-"
+process svmb_dec1 = "svm~" => E2, "ch1-"
+
+process sve_dec2  = sve => n1, neu2
+process svm_dec2  = svm => n2, neu2
+process sveb_dec2 = "sve~" => N1, neu2
+process svmb_dec2 = "svm~" => N2, neu2
+
+process chp_dec1 = "ch1+" => E1, n1, neu1
+process chp_dec2 = "ch1+" => E2, n2, neu1
+process chp_decX = "ch1+" => u, D, neu1
+process chm_dec1 = "ch1-" => e1, N1, neu1
+process chm_dec2 = "ch1-" => e2, N2, neu1
+process chm_decX = "ch1-" => U, d, neu1
+
+process neu2_dec1 = neu2 => e1, E1, neu1
+process neu2_dec2 = neu2 => e2, E2, neu1
+process neu2_decv = neu2 => n3, N3, neu1
+process neu2_decX = neu2 => u, U, neu1
+# Also need decays via Charginos
+process neu2_decp1 = neu2 => e1, N1, "ch1+"
+process neu2_decp2 = neu2 => e2, N2, "ch1+"
+process neu2_decpX = neu2 =>  U,  d, "ch1+"
+process neu2_decm1 = neu2 => E1, n1, "ch1-"
+process neu2_decm2 = neu2 => E2, n2, "ch1-"
+process neu2_decmX = neu2 =>  u,  D, "ch1-"
+# And decay to photon
+#process neu2_decg  = neu2 => photon, neu1
+
+unstable se1  (sel_dec0, sel_dec1, sel_dec2)
+unstable smu1 (smu_dec0, smu_dec1, smu_dec2)
+unstable SE1  (selb_dec0, selb_dec1, selb_dec2)
+unstable SMU1 (smub_dec0, smub_dec1, smub_dec2)
+unstable sve  (sve_dec0, sve_dec1, sve_dec2)
+unstable svm  (svm_dec0, svm_dec1, svm_dec2)
+unstable "sve~"  (sveb_dec0, sveb_dec1, sveb_dec2)
+unstable "svm~"  (svmb_dec0, svmb_dec1, svmb_dec2)
+unstable "ch1+" (chp_dec1, chp_dec2, chp_decX)
+unstable "ch1-" (chm_dec1, chm_dec2, chm_decX)
+unstable neu2 (neu2_dec1, neu2_dec2, neu2_decv, neu2_decX, neu2_decp1, neu2_decp2, neu2_decpX, neu2_decm1, neu2_decm2, neu2_decmX)
+
+# See /Whizard3/whizard-3.0.3/share/models/MSSM.mdl for allowed ones
+compile
+
+# LHC collision energy
+sqrts = 13.6 TeV
+beams = p, p => pdf_builtin 
+$pdf_builtin_set = "cteq6l" 
+
+# Require two electrons and one muon from the decay steps 
+# (the ch1+ decay decays each with 50% probability to e and 50% to mu), so 
+# we are asking for the cross ones here
+
+# Not sure if this can be applied if it is in a decay.      
+cuts = all M > 4.0 GeV [combine [e1, E1]] 
+       and all M > 4.0 GeV [combine [e2, E2]]
+
+integrate (Sleptons1, Sleptons2, Sleptons3, Sleptons4, Sleptons5, Sleptons6, Sleptons7, Sleptons8)
+
+# Reset branching fractions to 50/25/25 (sleptons) and 25/50/25 (sneutrinos) by specifying partial widths for the various decay modes
+integral(sel_dec0)  = 0.5 MeV
+integral(sel_dec1)  = 0.25 MeV
+integral(sel_dec2)  = 0.25 MeV
+integral(smu_dec0)  = 0.50 MeV
+integral(smu_dec1)  = 0.25 MeV
+integral(smu_dec2)  = 0.25 MeV
+integral(selb_dec0) = 0.50 MeV
+integral(selb_dec1) = 0.25 MeV
+integral(selb_dec2) = 0.25 MeV
+integral(smub_dec0) = 0.50 MeV
+integral(smub_dec1) = 0.25 MeV
+integral(smub_dec2) = 0.25 MeV
+integral(sve_dec0)  = 0.25 MeV
+integral(sve_dec1)  = 0.50 MeV
+integral(sve_dec2)  = 0.25 MeV
+integral(svm_dec0)  = 0.25 MeV
+integral(svm_dec1)  = 0.50 MeV
+integral(svm_dec2)  = 0.25 MeV
+integral(sveb_dec0)  = 0.25 MeV
+integral(sveb_dec1)  = 0.50 MeV
+integral(sveb_dec2)  = 0.25 MeV
+integral(svmb_dec0)  = 0.25 MeV
+integral(svmb_dec1)  = 0.50 MeV
+integral(svmb_dec2)  = 0.25 MeV
+
+integral(chp_dec1)   = 0.1086 MeV
+integral(chp_dec2)   = 0.1086 MeV
+#decX is both hadronic and tau decays for now for W* and Z* based decays
+integral(chp_decX)   = 0.7828 MeV
+integral(chm_dec1)   = 0.1086 MeV
+integral(chm_dec2)   = 0.1086 MeV
+integral(chm_decX)   = 0.7828 MeV
+
+# Z-branching fractions
+#integral(neu2_dec1)   = 0.03366 MeV
+#integral(neu2_dec2)   = 0.03366 MeV
+#integral(neu2_decv)   = 0.20000 MeV
+#integral(neu2_decX)   = 0.73268 MeV
+
+# Redo neutralino_2 branching fractions to be 50% Z*, 25% W*+, 25% W*-, 0% photon (as loop decay not currently implemented).
+# Use Z branching fractions above * 0.50
+integral(neu2_dec1)    = 0.016840 MeV
+integral(neu2_dec2)    = 0.016840 MeV
+integral(neu2_decv)    = 0.1000 MeV
+integral(neu2_decX)    = 0.36632 MeV
+# Use W branching fractions above * 0.25
+integral(neu2_decp1)   = 0.02715 MeV
+integral(neu2_decp2)   = 0.02715 MeV
+integral(neu2_decpX)   = 0.19570 MeV
+# Use W branching fractions above * 0.25
+integral(neu2_decm1)   = 0.02715 MeV
+integral(neu2_decm2)   = 0.02715 MeV
+integral(neu2_decmX)   = 0.19570 MeV
+#integral(neu2_decg)    = 0.03 MeV
+# Check the sum = 1.00000 MeV   => bang on
+
+#see LEP_higgs.sin for other examples
+
+$title = "Eta ($e^{-}$)"
+$x_label = "$\eta_{e^{-}}$"
+histogram etae (-7.5, 7.5, 0.1)
+
+$title = "Eta ($e^{+}$)"
+$x_label = "$\eta_{e^{+}}$"
+histogram etap (-7.5, 7.5, 0.1)
+
+$title = "Eta ($\mu^{+}$)"
+$x_label = "$\eta_{\mu^{+}}$"
+histogram etam (-7.5, 7.5, 0.1)
+
+$title = "Eta ($\nu_{\mu}$)"
+$x_label = "$\eta_{\nu_{\mu}}$"
+histogram etan (-7.5, 7.5, 0.1)
+
+$title = "Positive Muon Energy"
+$x_label = "$E_{\mu^{+}}$ [GeV]"
+histogram e_E2 (0.0, 31.0 GeV, 0.25 GeV)
+
+$title = "Dielectron Energy"
+$x_label = "$E_{e^{+} e^{-}}$ [GeV]"
+histogram E_ll (0.0, 200.0 GeV, 2.0 GeV)
+
+$title = "Dielectron Mass"
+$x_label = "$M_{e^{+} \e^{-}}$ [GeV]"
+histogram m_ll (0.0, 100.0 GeV, 1.0 GeV)
+
+$title = "Trilepton Mass"
+$x_label = "$m_{e^{+} e^{-} \mu^{+}}$ [GeV]"
+histogram mtri (0.0, 750.0, 2.5)
+
+analysis = record etae (eval Eta [e1]);  
+           record etap (eval Eta [E1]);  
+           record etam (eval Eta [E2]);  
+           record etan (eval Eta [n2]);  
+           record e_E2 (eval E [E2]);
+           record E_ll (eval E [e1, E1]);           
+           record m_ll (eval M [e1, E1]);
+           record mtri (eval M [combine [e1,E1], E2])           
+
+n_events = 1000000
+
+simulate (Sleptons1, Sleptons2, Sleptons3, Sleptons4, Sleptons5, Sleptons6, Sleptons7, Sleptons8)
+
+compile_analysis { $out_file = "test.dat" }
