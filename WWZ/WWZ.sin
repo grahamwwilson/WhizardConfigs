@@ -51,7 +51,7 @@ sample_format = lhef
 #process WWWM5 = parton, parton => e1, N1, e2, N2, E2, n2
 #process WWWM6 = parton, parton => e2, N2, e2, N2, E2, n2
 
-process WWWZ1 = parton, parton => E1, n1, e2, N2, e2, E2
+process WWZ1 = parton, parton => E1, n1, e2, N2, e2, E2
 
 # Need to set s,c quark masses to zero for this to work.
 ms=0
