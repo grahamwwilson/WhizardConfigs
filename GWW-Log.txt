@@ -1,0 +1,4 @@
+Notes re production jobs on HPC under gwwilson
+
+1. Run-7/WWW   25000 events.    5.82% excess weight events
+2. Run-8/WWZ   10000 events.    8.87% excess weight events
