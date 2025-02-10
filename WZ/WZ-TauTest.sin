@@ -32,8 +32,8 @@ alias jet = parton
 alias q = u:U:d:D:s:S:c:C
 alias leptons = e1:E1:E2:n2
 
-?ps_fsr_active = true
-?hadronization_active=true
+#?ps_fsr_active = true
+#?hadronization_active=true
 ?ps_taudec_active=true
 
 #?write_raw=false
@@ -66,8 +66,7 @@ compile
 sqrts = 13600.0
 beams = p, p => pdf_builtin
 $pdf_builtin_set = "cteq6l" 
-# Require |cos(theta}| < 0.985  (about 10 degrees - exactly 9.9364 degrees)
-#cuts = all sin(Theta) > 0.172554339267 [A]
+
 cuts = all M > 4.0 GeV [combine [e1, E1]] 
        and all M > 4.0 GeV [combine [e2, E2]] 
 # Use default integration scheme 

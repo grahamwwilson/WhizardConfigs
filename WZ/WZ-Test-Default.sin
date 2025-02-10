@@ -66,8 +66,8 @@ $pdf_builtin_set = "cteq6l"
 #cuts = all sin(Theta) > 0.172554339267 [A]
 cuts = all M > 4.0 GeV [combine [e1, E1]] 
        and all M > 4.0 GeV [combine [e2, E2]] 
-# Double the default call numbers
-integrate (WZPlusMME) { iterations = 10:20000:"gw", 5:40000:"" }
+# Use default integration scheme 
+integrate (WZPlusMME) 
 n_events = 100000
 
 # Define title etc. as global variables, that will be used by PLOT
