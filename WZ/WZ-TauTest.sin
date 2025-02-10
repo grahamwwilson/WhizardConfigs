@@ -32,7 +32,9 @@ alias jet = parton
 alias q = u:U:d:D:s:S:c:C
 alias leptons = e1:E1:E2:n2
 
+?ps_fsr_active = true
 ?hadronization_active=true
+$shower_method="PYTHIA6"
 ?ps_taudec_active=true
 
 #?write_raw=false
