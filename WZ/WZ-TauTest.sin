@@ -32,6 +32,7 @@ alias jet = parton
 alias q = u:U:d:D:s:S:c:C
 alias leptons = e1:E1:E2:n2
 
+?hadronization_active=true
 ?ps_taudec_active=true
 
 #?write_raw=false
