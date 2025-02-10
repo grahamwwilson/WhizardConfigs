@@ -34,7 +34,7 @@ alias q = u:U:d:D:s:S:c:C
 alias leptons = e1:E1:E2:n2
 ?write_raw=false
 sample_format = lhef
-?vis_diags = true
+#?vis_diags = true
 
 alias neutrino = n1:n2
 alias Wantilepton = E1:E2
