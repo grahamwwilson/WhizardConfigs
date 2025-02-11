@@ -63,10 +63,11 @@ mc=0
 ?hadronization_active = true
 $shower_method = "PYTHIA6"
 ?ps_taudec_active = true
-?ps_tauola_dec_mode1 = 1
 
 polarized e3, E3, "W+", "W-", Z
 ?polarized_events = true 
+
+?ps_tauola_dec_mode1 = 1
 
 compile
 
