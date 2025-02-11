@@ -33,7 +33,7 @@ alias q = u:U:d:D:s:S:c:C
 alias leptons = e1:E1:E2:n2
 
 #?write_raw=false
-sample_format = lhef, stdhep_ev4, hepmc
+sample_format = lhef, hepmc
 #?vis_diags = true
 
 alias neutrino = n1:n2
@@ -57,9 +57,9 @@ process WZPlusMMT  = parton, parton => E3, n3, e2, E2
 ms=0
 mc=0
 
-?ps_fsr_active = true
-?hadronization_active = true
-$shower_method = "PYTHIA6"
+#?ps_fsr_active = true
+#?hadronization_active = true
+#$shower_method = "PYTHIA6"
 ?ps_taudec_active = true
 
 polarized e3, E3, "W+", "W-", Z
