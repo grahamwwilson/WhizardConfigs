@@ -67,8 +67,8 @@ $shower_method = "PYTHIA6"
 polarized e3, E3, "W+", "W-", Z
 ?polarized_events = true 
 
-?ps_tauola_dec_mode1=1
-?ps_tauola_dec_mode2=1
+ps_tauola_dec_mode1=1
+ps_tauola_dec_mode2=1
 
 compile
 
