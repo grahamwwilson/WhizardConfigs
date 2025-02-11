@@ -57,8 +57,8 @@ process WZPlusMMT  = parton, parton => E3, n3, e2, E2
 ms=0
 mc=0
 
-#?ps_fsr_active = true
-#?hadronization_active = true
+?ps_fsr_active = true
+?hadronization_active = false
 $shower_method = "PYTHIA6"
 ?ps_taudec_active = true
 
@@ -77,8 +77,8 @@ beams = p, p => lhapdf
 cuts = all M > 4.0 GeV [combine [e1, E1]] 
        and all M > 4.0 GeV [combine [e2, E2]] 
 # Use default integration scheme 
-integrate (WZPlusMMT) { iterations = 10:20000:"gw", 5:40000:"" } 
-n_events = 2000
+integrate (WZPlusMMT) { iterations = 10:10000:"gw", 5:20000:"" } 
+n_events = 1000
 
 # Define title etc. as global variables, that will be used by PLOT
 $description =
