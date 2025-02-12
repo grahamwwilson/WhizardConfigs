@@ -45,9 +45,11 @@ alias antineutrino = N1:N2
 process WZPlus  = parton, parton => antilepton, neutrino, lepton, antilepton
 process WZMinus = parton, parton => lepton, antineutrino, lepton, antilepton
 
-# Need to set s,c quark masses to zero for this to work.
-ms=0
-mc=0
+# Need to set e,mu,s,c quark masses to zero for this to work.
+me = 0
+mmu = 0
+ms = 0
+mc = 0
 
 compile
 
