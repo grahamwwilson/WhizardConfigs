@@ -40,7 +40,7 @@ sample_format = lhef
 # WWZ1, WWZ4, WWZ5, WWZ8 processes.
 
 #process ZZZ-6e    = parton, parton => e1, E1, e1, E1, e1, E1
-process ZZZ-4e2mu = parton, parton => e1, E1, e1, E1, e2, E2
+process ZZZ4e2mu = parton, parton => e1, E1, e1, E1, e2, E2
 #process ZZZ-2e4mu = parton, parton => e1, E1, e2, E2, e2, E2
 #process ZZZ-6mu   = parton, parton => e2, E2, e2, E2, e2, E2
 
@@ -59,7 +59,7 @@ cuts = all M > 4.0 GeV [combine [e1, E1]]
 
 $integration_method = "vamp2"
 
-integrate ( ZZZ-4e2mu ) { iterations = 10:100000:"gw", 5:150000 }
+integrate ( ZZZ4e2mu ) { iterations = 10:100000:"gw", 5:150000 }
 n_events = 10000
 
 # Define title etc. as global variables, that will be used by PLOT
@@ -145,6 +145,6 @@ analysis = record costhe (eval cos(Theta)[e1]);
            record ptquad (eval Pt [combine [e1,E1], combine [E2, n2]]);
            record hmet (eval Pt [n2])                               
 
-simulate ( ZZZ-4e2mu ) 
+simulate ( ZZZ4e2mu ) 
 
 compile_analysis { $out_file = "ZZZ.dat" }
