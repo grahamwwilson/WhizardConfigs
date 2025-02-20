@@ -70,7 +70,7 @@ cuts = all M > 4.0 GeV [combine [e1, E1]]
        
 $integration_method = "vamp2"       
 integrate (WZPlus, WZMinus) { iterations = 10:40000:"gw", 5:80000:"" }
-n_events = 100000
+n_events = 1000000
 
 # Define title etc. as global variables, that will be used by PLOT
 $description =
