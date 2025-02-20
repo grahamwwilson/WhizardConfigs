@@ -62,8 +62,8 @@ polarized e3, E3, "W+", "W-", Z
 compile
 
 sqrts = 13600.0
-beams = p, p => pdf_builtin
-$pdf_builtin_set = "cteq6l" 
+beams = p, p => lhapdf
+#$pdf_builtin_set = "cteq6l" 
 
 cuts = all M > 4.0 GeV [combine [e1, E1]] 
        and all M > 4.0 GeV [combine [e2, E2]] 
