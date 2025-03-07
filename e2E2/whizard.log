@@ -1,0 +1,149 @@
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.0.3
+|=============================================================================|
+| Reading model file '/home/graham/Whizard3/InstallDir-3.0.3/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/home/graham/Whizard3/InstallDir-3.0.3/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'e2E2.sin'
+?vis_diags = true
+| Process library 'default_lib': recorded process 'eetomumu'
+sqrts =  3.600000000000E+02
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': removing old files
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+| Process library 'default_lib': compiling sources
+| Process library 'default_lib': linking
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 13391
+| Initializing integration for process eetomumu:
+| Beam structure: [any particles]
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)
+|   e+  (mass = 5.1099700E-04 GeV)
+|   sqrts = 3.600000000000E+02 GeV
+| Phase space: generating configuration ...
+| Phase space: ... success.
+| Phase space: writing configuration file 'eetomumu.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'eetomumu'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'eetomumu_i1':   e-, e+ => mu-, mu+ [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 2 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| Starting integration for process 'eetomumu'
+| Integrate: iterations not specified, using default
+| Integrate: iterations = 3:1000:"gw", 3:10000:""
+| Integrator: 2 chains, 2 channels, 2 dimensions
+| Integrator: Using VAMP channel equivalences
+| Integrator: 1000 initial calls, 20 bins, stratified = T
+| Integrator: VAMP
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+   1        784  8.3130145E+02  1.48E+00    0.18    0.05*  40.12
+   2        784  8.3468081E+02  1.06E+00    0.13    0.04*  69.09
+   3        784  8.3451863E+02  1.04E+00    0.13    0.04*  73.94
+|-----------------------------------------------------------------------------|
+   3       2352  8.3393294E+02  6.65E-01    0.08    0.04   73.94    1.98   3
+|-----------------------------------------------------------------------------|
+   4       9936  8.3319435E+02  1.27E-01    0.02    0.02*  73.49
+   5       9936  8.3333218E+02  1.27E-01    0.02    0.02*  73.50
+   6       9936  8.3332586E+02  1.27E-01    0.02    0.02   73.49
+|-----------------------------------------------------------------------------|
+   6      29808  8.3328437E+02  7.32E-02    0.01    0.02   73.49    0.38   3
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:01s
+$title = "Cosine Theta of Negative Muon"
+$x_label = "$\cos{\theta_{\mu^{-}}}$"
+$title = "Cosine Theta of Positive Muon"
+$x_label = "$\cos{\theta_{\mu^{+}}}$"
+n_events = 10000
+| Starting simulation for process 'eetomumu'
+| Simulate: using integration grids from file 'eetomumu.m1.vg'
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 13392
+| Simulation: requested number of events = 10000
+|             corr. to luminosity [fb-1] =   1.2001E+01
+| Events: writing to LHEF file 'eetomumu.lhe'
+| Events: writing to raw file 'eetomumu.evx'
+| Events: generating 10000 unweighted, unpolarized events ...
+| Events: event normalization mode '1'
+|         ... event sample complete.
+| Events: actual unweighting efficiency =  73.63 %
+Warning: Encountered events with excess weight: 1 events (  0.010 %)
+| Maximum excess weight = 1.127E-04
+| Average excess weight = 1.127E-08
+| Events: closing LHEF file 'eetomumu.lhe'
+| Events: closing raw file 'eetomumu.evx'
+$out_file = "analysis.dat"
+| Opening file 'analysis.dat' for output
+| Writing analysis data to file 'analysis.dat'
+| Closing file 'analysis.dat' for output
+| Compiling analysis results display in 'analysis.tex'
+| Providing analysis steering makefile 'analysis_ana.makefile'
+| There were no errors and    2 warning(s).
+| WHIZARD run finished.
+|=============================================================================|
