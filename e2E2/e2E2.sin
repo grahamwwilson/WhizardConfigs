@@ -1,6 +1,6 @@
 # Simple MWE with both
 # a) Feynman diagrams
-# b) simple native analysis code
+# b) simple histograms with native analysis code
 
 ?vis_diags = true
 process eetomumu = e1, E1 => e2, E2
