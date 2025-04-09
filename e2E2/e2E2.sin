@@ -1,8 +1,30 @@
-# Simple MWE
+# Simple MWE with both
+# a) Feynman diagrams
+# b) simple histograms with native analysis code
 
 ?vis_diags = true
-process ee = e1, E1 => e2, E2
+process eetomumu = e1, E1 => e2, E2
+
 sqrts = 360 GeV
-n_events = 10
 sample_format = lhef
-simulate (ee)
+
+compile
+
+integrate (eetomumu)
+
+$title = "Cosine Theta of Negative Muon"
+$x_label = "$\cos{\theta_{\mu^{-}}}$"
+histogram costh1 (-1.0, 1.0, 0.05)
+
+$title = "Cosine Theta of Positive Muon"
+$x_label = "$\cos{\theta_{\mu^{+}}}$"
+histogram costh2 (-1.0, 1.0, 0.05)
+
+analysis = record costh1 (eval cos(Theta)[e2]);
+           record costh2 (eval cos(Theta)[E2])
+
+n_events = 10000
+
+simulate (eetomumu)
+
+compile_analysis { $out_file = "analysis.dat" }
