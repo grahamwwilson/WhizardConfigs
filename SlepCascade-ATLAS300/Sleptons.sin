@@ -23,7 +23,7 @@ sample_format = lhef
 #?vis_diags = true
 
 ?slha_read_decays = true
-read_slha("SC-250-150-100.slha")
+read_slha("SC-300-200-100.slha")
 
 # All production processes
 # charged slepton(L) pairs
