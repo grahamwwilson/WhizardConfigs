@@ -1,0 +1,117 @@
+model = MSSM_CKM
+
+mW = 80.369
+#mH = 125.2
+
+alias parton = u:U:d:D:s:S:c:C:g
+
+# Need to set s,c quark masses to zero for this to work.
+ms=0
+mc=0
+
+alias jet = parton
+### We could have added strange and charm jets:
+# alias jet = parton:s:S:c:C
+alias lepton = e2:E2
+alias myelectrons = e1:E1
+alias mymuons = e2:E2
+alias neutrino = n1:N1:n2:N2
+
+?write_raw=false
+sample_format = lhef
+# Diagram visualization currently doesn't work on HPC cluster...
+#?vis_diags = true
+
+?slha_read_decays = true
+read_slha("SL-300-200.slha")
+
+# All production processes
+# charged slepton(L) pairs
+process Sleptons1 = parton, parton => se1, SE1
+process Sleptons2 = parton, parton => smu1, SMU1
+
+# How to specify different ones? 
+# Redefine the decay integrals (see later)
+
+process sel_dec0  = se1  => e1, neu1
+process smu_dec0  = smu1 => e2, neu1
+process selb_dec0  = SE1  => E1, neu1
+process smub_dec0  = SMU1 => E2, neu1
+
+unstable se1  (sel_dec0)
+unstable smu1 (smu_dec0)
+unstable SE1  (selb_dec0)
+unstable SMU1 (smub_dec0)
+
+# See /Whizard3/whizard-3.0.3/share/models/MSSM.mdl for allowed ones
+compile
+
+# LHC collision energy
+sqrts = 13.6 TeV
+beams = p, p => pdf_builtin 
+$pdf_builtin_set = "cteq6l" 
+
+# Require two electrons and one muon from the decay steps 
+# (the ch1+ decay decays each with 50% probability to e and 50% to mu), so 
+# we are asking for the cross ones here
+
+# Not sure if this can be applied if it is in a decay.      
+cuts = all M > 4.0 GeV [combine [e1, E1]] 
+       and all M > 4.0 GeV [combine [e2, E2]]
+
+integrate (Sleptons1, Sleptons2)
+
+# Set all branching fractions to 100%
+integral(sel_dec0)  = 0.50 MeV
+integral(smu_dec0)  = 0.50 MeV
+integral(selb_dec0) = 0.50 MeV
+integral(smub_dec0) = 0.50 MeV
+
+#see LEP_higgs.sin for other examples
+
+$title = "Eta ($e^{-}$)"
+$x_label = "$\eta_{e^{-}}$"
+histogram etae (-7.5, 7.5, 0.1)
+
+$title = "Eta ($e^{+}$)"
+$x_label = "$\eta_{e^{+}}$"
+histogram etap (-7.5, 7.5, 0.1)
+
+$title = "Eta ($\mu^{+}$)"
+$x_label = "$\eta_{\mu^{+}}$"
+histogram etam (-7.5, 7.5, 0.1)
+
+$title = "Eta ($\nu_{\mu}$)"
+$x_label = "$\eta_{\nu_{\mu}}$"
+histogram etan (-7.5, 7.5, 0.1)
+
+$title = "Positive Muon Energy"
+$x_label = "$E_{\mu^{+}}$ [GeV]"
+histogram e_E2 (0.0, 31.0 GeV, 0.25 GeV)
+
+$title = "Dielectron Energy"
+$x_label = "$E_{e^{+} e^{-}}$ [GeV]"
+histogram E_ll (0.0, 200.0 GeV, 2.0 GeV)
+
+$title = "Dielectron Mass"
+$x_label = "$M_{e^{+} \e^{-}}$ [GeV]"
+histogram m_ll (0.0, 100.0 GeV, 1.0 GeV)
+
+$title = "Trilepton Mass"
+$x_label = "$m_{e^{+} e^{-} \mu^{+}}$ [GeV]"
+histogram mtri (0.0, 750.0, 2.5)
+
+analysis = record etae (eval Eta [e1]);  
+           record etap (eval Eta [E1]);  
+           record etam (eval Eta [E2]);  
+           record etan (eval Eta [n2]);  
+           record e_E2 (eval E [E2]);
+           record E_ll (eval E [e1, E1]);           
+           record m_ll (eval M [e1, E1]);
+           record mtri (eval M [combine [e1,E1], E2])           
+
+n_events = 100000
+
+simulate (Sleptons1, Sleptons2)
+
+compile_analysis { $out_file = "test.dat" }
