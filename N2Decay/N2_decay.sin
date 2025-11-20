@@ -6,10 +6,10 @@ read_slha("susy_higgsino_full.slha")
 #slha_show VMIX   # chargino
 
 # Define particles
-particle n1 = chi10
-particle n2 = chi20
-particle c1p = chi1+
-particle c1m = chi1-
+alias n1 = chi10
+alias n2 = chi20
+alias c1p = chi1+
+alias c1m = chi1-
 
 # Define final states
 process N2_to_N1_ee = n2 => n1 e+ e-
