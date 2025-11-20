@@ -35,7 +35,14 @@ BLOCK MASS
 BLOCK EXTPAR
     1    1.0e5       # M1 (Bino)
     2    1.0e5       # M2 (Wino)
-   23    1.85000000e+02  # mu (Higgsino)
+   23   -1.85000000e+02  # mu (Higgsino)
+
+BLOCK MINPAR
+  1  10.0        # tan(beta)
+  2  -1           # sign(mu)
+  3  1000.0      # m0 (dummy)
+  4  1000.0      # m1/2 (dummy)
+  5  0.0         # A0 (dummy)
 
 DECAY 23  2.495200e+00   # Z width
 DECAY 24  2.085000e+00   # W width
