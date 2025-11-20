@@ -50,7 +50,7 @@ $pdf_builtin_set = "cteq6l"
 
 process N2C1 = parton, parton => neu2, c1p
 
-integrate(N2C1)
+integrate (N2C1)
 
 $title = "Eta (N2)"
 $x_label = "$\eta_N2$"
