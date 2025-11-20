@@ -6,15 +6,15 @@ read_slha("susy_higgsino_full.slha")
 #slha_show VMIX   # chargino
 
 # Define particles
-alias n1 = chi10
-alias n2 = chi20
-alias c1p = chi1+
-alias c1m = chi1-
+#alias neut1 = chi10
+#alias neut2 = chi20
+alias c1p = "ch1+"
+alias c1m = "ch1-"
 
 # Define final states
-process N2_to_N1_ee = n2 => n1 e+ e-
-process N2_to_C1_ep_ve = n2 => c1p e- ve~
-process N2_to_C1_em_ve = n2 => c1m e+ ve
+process N2_to_N1_ee = neu2 => neu1 e+ e-
+process N2_to_C1_ep_ve = neu2 => c1p e- ve~
+process N2_to_C1_em_ve = neu2 => c1m e+ ve
 
 # Set integration precision
 integration_precision = 1e-6
