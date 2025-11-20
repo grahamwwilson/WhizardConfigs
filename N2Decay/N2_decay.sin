@@ -19,8 +19,8 @@ integration_precision = 1e-6
 iterations = 5
 
 # Output widths / branching ratios
-sqrts = 200  # center-of-mass energy dummy (not used)
-sim_events = 0  # no events needed
+#sqrts = 200  # center-of-mass energy dummy (not used)
+#sim_events = 0  # no events needed
 integrate(N2_to_N1_ee)
 integrate(N2_to_C1_ep_ve)
 integrate(N2_to_C1_em_ve)
