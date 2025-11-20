@@ -14,6 +14,10 @@ process N2_to_N1_ee = neu2 => neu1, E1, e1
 process N2_to_C1_ep_ve = neu2 => c1p, e1, N1 
 process N2_to_C1_em_ve = neu2 => c1m, E1, n1
 
+unstable neu2 (N2_to_N1_ee, N2_to_C1_ep_ve, N2_to_C1_em_ve)
+
+compile
+
 # Set integration precision
 integration_precision = 1e-6
 iterations = 5
@@ -21,9 +25,9 @@ iterations = 5
 # Output widths / branching ratios
 #sqrts = 200  # center-of-mass energy dummy (not used)
 #sim_events = 0  # no events needed
-integrate(N2_to_N1_ee)
-integrate(N2_to_C1_ep_ve)
-integrate(N2_to_C1_em_ve)
+integrate (N2_to_N1_ee) {iterations = 10 }
+integrate (N2_to_C1_ep_ve) {iterations = 10 }
+integrate (N2_to_C1_em_ve) {iterations = 10 }
 
 # Print partial widths
 print("N2 -> N1 e+ e- width")
