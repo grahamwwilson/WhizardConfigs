@@ -43,40 +43,35 @@ DECAY 24  2.085000e+00   # W width
 #########################################
 # Neutralino mixing matrix (NMIX)       #
 #########################################
-BLOCK NMIX
-1  1   0.0       
-1  2   0.0       
-1  3  -0.707107
-1  4   0.707107
+BLOCK NMIX  # Neutralino Mixing Matrix  chi_i0 = N_ij (B,W,H_d,H_u)_j
+  1  1     0.00E+00   # N_11 bino
+  1  2     0.00E+00   # N_12
+  1  3     7.07E-01   # N_13
+  1  4    -7.07E-01   # N_14
+  2  1     0.00E+00   # N_21
+  2  2     0.00E+00   # N_22
+  2  3    -7.07E-01   # N_23 higgsino
+  2  4    -7.07E-01   # N_24 higgsino
+  3  1     1.00E+00   # N_31
+  3  2     0.00E+00   # N_32
+  3  3     0.00E-00   # N_33 higgsino
+  3  4     0.00E-00   # N_34 higgsino
+  4  1     0.00E+00   # N_41
+  4  2    -1.00E+00   # N_42 wino
+  4  3     0.00E+00   # N_43
+  4  4     0.00E+00   # N_44
+#
+BLOCK UMIX  # Chargino Mixing Matrix U
+  1  1     0.00E+00   # Umix_{11}
+  1  2     1.00E+00   # Umix_{12} higgsino
+  2  1     1.00E+00   # Umix_{21} wino
+  2  2     0.00E+00   # Umix_{22}
+#
+BLOCK VMIX  # Chargino Mixing Matrix V
+  1  1     0.00E+00   # Vmix_{11}
+  1  2     1.00E+00   # Vmix_{12} higgsino
+  2  1     1.00E+00   # Vmix_{21} wino
+  2  2     0.00E+00   # Vmix_{22}
+#
 
-2  1   0.0
-2  2   0.0
-2  3   0.707107
-2  4   0.707107
-
-3  1   1.0
-3  2   0.0
-3  3   0.0
-3  4   0.0
-
-4  1   0.0
-4  2   1.0
-4  3   0.0
-4  4   0.0
-
-#########################################
-# Chargino mixing matrices (UMIX, VMIX)
-# Approx pure-higgsino: both ~ identity in Higgsino subspace
-#########################################
-BLOCK UMIX
-1  1   0.0
-1  2   1.0
-2  1   1.0
-2  2   0.0
-
-BLOCK VMIX
-1  1   0.0
-1  2   1.0
-2  1   1.0
-2  2   0.0
 
