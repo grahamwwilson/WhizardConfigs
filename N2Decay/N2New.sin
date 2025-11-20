@@ -22,7 +22,7 @@ sample_format = lhef
 # Diagram visualization currently doesn't work on HPC cluster...
 #?vis_diags = true
 
-?slha_read_decays = true
+#?slha_read_decays = true
 read_slha("susy_higgsino_full.slha")
 
 # Define particles
