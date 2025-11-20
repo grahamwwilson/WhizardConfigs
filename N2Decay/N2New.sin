@@ -47,7 +47,28 @@ process N2C1 = parton, parton => neu2, c1p
 
 integrate(N2C1)
 
+$title = "Eta (N2)"
+$x_label = "$\eta_N2$"
+histogram etan2 (-7.5, 7.5, 0.1)
+
+analysis = record etan2 (eval Eta [neu2])
+
 n_events = 1000
 
 simulate (N2C1)
+
+compile_analysis { $out_file = "test.dat" }
+
+# Print partial widths
+print("N2 -> N1 e+ e- width")
+print_result(N2_to_N1_ee)
+
+print("N2 -> C1+ e- ve~ width")
+print_result(N2_to_C1_ep_ve)
+
+print("N2 -> C1- e+ ve width")
+print_result(N2_to_C1_em_ve)
+
+print("MyCCtoNCRatio")
+print_result((N2_to_C1_ep_ve+N2_to_C1_em_ve)/(N2_to_N1_ee))
 
