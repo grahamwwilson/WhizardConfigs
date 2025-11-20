@@ -1,5 +1,5 @@
 # Load MSSM and SLHA
-model = "mssm"
+model mssm
 read_slha("susy_higgsino_full.slha")
 #slha_show NMIX   # neutralino mixing matrix
 #slha_show UMIX   # chargino
@@ -25,9 +25,9 @@ iterations = 5
 # Output widths / branching ratios
 #sqrts = 200  # center-of-mass energy dummy (not used)
 #sim_events = 0  # no events needed
-integrate (N2_to_N1_ee) {iterations = 10 }
-integrate (N2_to_C1_ep_ve) {iterations = 10 }
-integrate (N2_to_C1_em_ve) {iterations = 10 }
+integrate N2_to_N1_ee 
+integrate N2_to_C1_ep_ve 
+integrate N2_to_C1_em_ve 
 
 # Print partial widths
 print("N2 -> N1 e+ e- width")
