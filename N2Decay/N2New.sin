@@ -1,0 +1,53 @@
+model = MSSM_CKM
+
+mW = 80.369
+#mH = 125.2
+
+alias parton = u:U:d:D:s:S:c:C:g
+
+# Need to set s,c quark masses to zero for this to work.
+ms=0
+mc=0
+
+alias jet = parton
+### We could have added strange and charm jets:
+# alias jet = parton:s:S:c:C
+alias lepton = e2:E2
+alias myelectrons = e1:E1
+alias mymuons = e2:E2
+alias neutrino = n1:N1:n2:N2
+
+?write_raw=false
+sample_format = lhef
+# Diagram visualization currently doesn't work on HPC cluster...
+#?vis_diags = true
+
+?slha_read_decays = true
+read_slha("susy_higgsino_full.slha")
+
+# Define particles
+alias c1p = "ch1+"
+alias c1m = "ch1-"
+
+# Define final states
+process N2_to_N1_ee = neu2 => neu1, E1, e1
+process N2_to_C1_ep_ve = neu2 => c1p, e1, N1 
+process N2_to_C1_em_ve = neu2 => c1m, E1, n1
+
+unstable neu2 (N2_to_N1_ee, N2_to_C1_ep_ve, N2_to_C1_em_ve)
+
+compile
+
+# LHC collision energy
+sqrts = 13.6 TeV
+beams = p, p => pdf_builtin 
+$pdf_builtin_set = "cteq6l" 
+
+process N2C1 = parton, parton => neu2, c1p
+
+integrate(N2C1)
+
+n_events = 1000
+
+simulate (N2C1)
+
