@@ -60,15 +60,15 @@ simulate (N2C1)
 compile_analysis { $out_file = "test.dat" }
 
 # Print partial widths
-print("N2 -> N1 e+ e- width")
+#print("N2 -> N1 e+ e- width")
 print_result(N2_to_N1_ee)
 
-print("N2 -> C1+ e- ve~ width")
+#print("N2 -> C1+ e- ve~ width")
 print_result(N2_to_C1_ep_ve)
 
-print("N2 -> C1- e+ ve width")
+#print("N2 -> C1- e+ ve width")
 print_result(N2_to_C1_em_ve)
 
-print("MyCCtoNCRatio")
+#print("MyCCtoNCRatio")
 print_result((N2_to_C1_ep_ve+N2_to_C1_em_ve)/(N2_to_N1_ee))
 
