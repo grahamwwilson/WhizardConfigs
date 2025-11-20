@@ -1,0 +1,85 @@
+#########################################
+# SLHA: pure-higgsino MSSM benchmark    #
+# mN1=180, mN2=200, mC1=185 GeV        #
+# Heavy sfermions (~100 TeV)            #
+#########################################
+
+BLOCK MODSEL
+    1    1          # MSSM
+
+BLOCK SMINPUTS
+    1    1.27934000e+02     # alpha_em^-1(MZ)
+    2    1.1663787e-05      # G_Fermi
+    3    1.17200000e-01     # alpha_s(MZ)
+    4    9.11880000e+01     # MZ
+    5    4.18000000e+00     # mb(mb)
+    6    1.73500000e+02     # mt pole
+    7    1.77699000e+00     # mtau
+
+BLOCK MASS
+   1000022   1.80000000e+02   # chi_10, mN1
+   1000023   2.00000000e+02   # chi_20, mN2
+   1000024   1.85000000e+02   # chi_1+, mC1+
+# Heavy sfermions
+   1000001   1.0e+05
+   1000002   1.0e+05
+   1000003   1.0e+05
+   1000004   1.0e+05
+   1000011   1.0e+05
+   1000012   1.0e+05
+   1000013   1.0e+05
+   1000014   1.0e+05
+   1000015   1.0e+05
+   1000016   1.0e+05
+
+BLOCK EXTPAR
+    1    1.0e5       # M1 (Bino)
+    2    1.0e5       # M2 (Wino)
+   23    1.85000000e+02  # mu (Higgsino)
+
+DECAY 23  2.495200e+00   # Z width
+DECAY 24  2.085000e+00   # W width
+
+#########################################
+# Neutralino mixing matrix (NMIX)       #
+#########################################
+BLOCK NMIX
+# rows = neutralino i, columns = (Bino, Wino, Hd, Hu)
+1  1   0.0       # χ1⁰ Bino
+1  2   0.0       # χ1⁰ Wino
+1  3  -0.707107  # χ1⁰ H_d
+1  4   0.707107  # χ1⁰ H_u
+
+2  1   0.0
+2  2   0.0
+2  3   0.707107
+2  4   0.707107
+
+3  1   1.0
+3  2   0.0
+3  3   0.0
+3  4   0.0
+
+4  1   0.0
+4  2   1.0
+4  3   0.0
+4  4   0.0
+
+#########################################
+# Chargino mixing matrices (UMIX, VMIX)
+# Approx pure-higgsino: both ~ identity in Higgsino subspace
+#########################################
+BLOCK UMIX
+# rows = negative chargino mass eigenstates, columns = (Wino−, Higgsino−)
+1  1   0.0
+1  2   1.0
+2  1   1.0
+2  2   0.0
+
+BLOCK VMIX
+# rows = positive chargino mass eigenstates, columns = (Wino+, Higgsino+)
+1  1   0.0
+1  2   1.0
+2  1   1.0
+2  2   0.0
+

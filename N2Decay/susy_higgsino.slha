@@ -1,0 +1,42 @@
+#######################################
+# Minimal SLHA for pure-higgsino test #
+#######################################
+
+BLOCK MODSEL                 # Model selection
+    1    1                  # MSSM
+
+BLOCK SMINPUTS               # Standard Model inputs
+    1    1.27934000e+02     # alpha_em^-1(MZ)
+    2    1.1663787e-05      # G_Fermi
+    3    1.17200000e-01     # alpha_s(MZ)
+    4    9.11880000e+01     # MZ
+    5    4.18000000e+00     # mb(mb)
+    6    1.73500000e+02     # mt pole
+    7    1.77699000e+00     # mtau
+
+BLOCK MASS                   # Mass spectrum
+# PDG code      mass
+   1000022   1.80000000e+02   # chi_10, mN1
+   1000023   2.00000000e+02   # chi_20, mN2
+   1000024   1.85000000e+02   # chi_1+, mC1+
+# Heavy sfermions
+   1000001   1.00000000e+05
+   1000002   1.00000000e+05
+   1000003   1.00000000e+05
+   1000004   1.00000000e+05
+   1000011   1.00000000e+05
+   1000012   1.00000000e+05
+   1000013   1.00000000e+05
+   1000014   1.00000000e+05
+   1000015   1.00000000e+05
+   1000016   1.00000000e+05
+
+BLOCK EXTPAR                # MSSM input parameters
+    1    1.0e5              # M1 >> mu (Bino heavy)
+    2    1.0e5              # M2 >> mu (Wino heavy)
+   23    1.85e2             # mu (higgsino mass)
+
+# SM widths
+DECAY 23  2.495200e+00      # Z width (GeV)
+DECAY 24  2.085000e+00      # W width (GeV)
+

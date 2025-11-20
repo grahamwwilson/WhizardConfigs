@@ -1,0 +1,39 @@
+# Load MSSM and SLHA
+model = "mssm"
+slha_read("susy_higgsino_full.slha")
+slha_show("NMIX")   # neutralino mixing matrix
+slha_show("UMIX")   # chargino
+slha_show("VMIX")   # chargino
+
+# Define particles
+particle n1 = chi10
+particle n2 = chi20
+particle c1p = chi1+
+particle c1m = chi1-
+
+# Define final states
+process N2_to_N1_ee = n2 => n1 e+ e-
+process N2_to_C1_ep_ve = n2 => c1p e- ve~
+process N2_to_C1_em_ve = n2 => c1m e+ ve
+
+# Set integration precision
+integration_precision = 1e-6
+iterations = 5
+
+# Output widths / branching ratios
+sqrts = 200  # center-of-mass energy dummy (not used)
+sim_events = 0  # no events needed
+integrate(N2_to_N1_ee)
+integrate(N2_to_C1_ep_ve)
+integrate(N2_to_C1_em_ve)
+
+# Print partial widths
+print("N2 -> N1 e+ e- width")
+print_result(N2_to_N1_ee)
+
+print("N2 -> C1+ e- ve~ width")
+print_result(N2_to_C1_ep_ve)
+
+print("N2 -> C1- e+ ve width")
+print_result(N2_to_C1_em_ve)
+
