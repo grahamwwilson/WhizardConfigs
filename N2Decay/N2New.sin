@@ -34,7 +34,12 @@ process N2_to_N1_ee = neu2 => neu1, E1, e1
 process N2_to_C1_ep_ve = neu2 => c1p, e1, N1 
 process N2_to_C1_em_ve = neu2 => c1m, E1, n1
 
+# Define final states
+process C1_to_N1_enu = c1p => neu1, E1, n1
+
 unstable neu2 (N2_to_N1_ee, N2_to_C1_ep_ve, N2_to_C1_em_ve)
+
+unstable c1p (C1_to_N1_enu)
 
 compile
 
