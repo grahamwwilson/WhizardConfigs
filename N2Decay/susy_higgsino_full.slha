@@ -6,7 +6,9 @@
 
 BLOCK MODSEL
     1    1          # MSSM
-
+BLOCK SPINFO  # Spectrum calculator information
+     1     DUMMY    # spectrum calculator               
+     2     1.0       # version number   
 BLOCK SMINPUTS
     1    1.27934000e+02     # alpha_em^-1(MZ)
     2    1.1663787e-05      # G_Fermi
