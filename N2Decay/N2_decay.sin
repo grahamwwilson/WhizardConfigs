@@ -1,6 +1,6 @@
 # Load MSSM and SLHA
 model = "mssm"
-slha_read susy_higgsino_full.slha
+read_slha("susy_higgsino_full.slha")
 slha_show NMIX   # neutralino mixing matrix
 slha_show UMIX   # chargino
 slha_show VMIX   # chargino
