@@ -44,11 +44,10 @@ DECAY 24  2.085000e+00   # W width
 # Neutralino mixing matrix (NMIX)       #
 #########################################
 BLOCK NMIX
-# rows = neutralino i, columns = (Bino, Wino, Hd, Hu)
-1  1   0.0       # χ1⁰ Bino
-1  2   0.0       # χ1⁰ Wino
-1  3  -0.707107  # χ1⁰ H_d
-1  4   0.707107  # χ1⁰ H_u
+1  1   0.0       
+1  2   0.0       
+1  3  -0.707107
+1  4   0.707107
 
 2  1   0.0
 2  2   0.0
@@ -70,14 +69,12 @@ BLOCK NMIX
 # Approx pure-higgsino: both ~ identity in Higgsino subspace
 #########################################
 BLOCK UMIX
-# rows = negative chargino mass eigenstates, columns = (Wino−, Higgsino−)
 1  1   0.0
 1  2   1.0
 2  1   1.0
 2  2   0.0
 
 BLOCK VMIX
-# rows = positive chargino mass eigenstates, columns = (Wino+, Higgsino+)
 1  1   0.0
 1  2   1.0
 2  1   1.0
