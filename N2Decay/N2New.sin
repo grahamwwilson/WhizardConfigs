@@ -1,4 +1,4 @@
-model = MSSM_CKM
+model = MSSM_SLHA
 
 mW = 80.369
 #mH = 125.2
